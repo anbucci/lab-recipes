@@ -1,4 +1,4 @@
-import recipesData from '../recipes.json'
+import recipesData from '../data/recipes.json'
 
 /**
  * Recipe Manager - Handles recipe data and operations

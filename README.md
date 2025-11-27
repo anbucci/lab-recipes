@@ -48,7 +48,8 @@ src/
   ├── recipeManager.js Recipe data management
   ├── uiManager.js     UI rendering
   └── style.css       Tailwind styles
-recipes.json          Recipe configuration
+data/
+  └── recipes.json    Recipe configuration
 package.json          Dependencies and scripts
 vite.config.js        Vite configuration
 tailwind.config.js    Tailwind configuration
