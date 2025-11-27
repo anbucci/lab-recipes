@@ -1,3 +1,5 @@
+import recipesData from '../recipes.json'
+
 /**
  * Recipe Manager - Handles recipe data and operations
  */
@@ -9,9 +11,7 @@ export default class RecipeManager {
 
   async loadRecipes() {
     try {
-      const response = await fetch('recipes.json')
-      if (!response.ok) throw new Error('Failed to load recipes')
-      this.recipes = await response.json()
+      this.recipes = recipesData
       console.log('Recipes loaded successfully:', this.recipes.length, 'recipes')
     } catch (error) {
       console.error('Error loading recipes:', error)
