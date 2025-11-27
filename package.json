@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "pnpm build && rsync -a --delete dist/ \"/Users/anbucci/Library/Mobile Documents/com~apple~CloudDocs/Lab/dist/\""
+    "deploy:icloud": "pnpm build && rsync -a --delete dist/ \"/Users/anbucci/Library/Mobile Documents/com~apple~CloudDocs/Lab/\""
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
