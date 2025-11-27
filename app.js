@@ -20,5 +20,9 @@ async function initializeApp() {
   }
 }
 
-// Start when DOM is ready
-document.addEventListener('DOMContentLoaded', initializeApp);
+// Start immediately or when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}

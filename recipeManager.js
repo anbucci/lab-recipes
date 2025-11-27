@@ -12,6 +12,7 @@ class RecipeManager {
       const response = await fetch('recipes.json');
       if (!response.ok) throw new Error('Failed to load recipes');
       this.recipes = await response.json();
+      console.log('Recipes loaded successfully:', this.recipes.length, 'recipes');
     } catch (error) {
       console.error('Error loading recipes:', error);
       this.recipes = [];
