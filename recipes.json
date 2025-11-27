@@ -1,0 +1,32 @@
+[
+  {
+    "id": "neuronal_medium",
+    "name": "Neuronal Medium",
+    "category": "Growth Media",
+    "components": [
+      { "name": "Neurobasal", "fraction": 0.96 },
+      { "name": "B27", "fraction": 0.02 },
+      { "name": "Pen/Strep", "fraction": 0.01 },
+      { "name": "GlutaMAX", "fraction": 0.01 }
+    ]
+  },
+  {
+    "id": "astrocyte_medium",
+    "name": "Astrocyte Medium",
+    "category": "Growth Media",
+    "components": [
+      { "name": "DMEM", "fraction": 0.88 },
+      { "name": "FBS", "fraction": 0.10 },
+      { "name": "Pen/Strep", "fraction": 0.02 }
+    ]
+  },
+  {
+    "id": "culture_buffer",
+    "name": "PBS Buffer",
+    "category": "Buffers",
+    "components": [
+      { "name": "PBS", "fraction": 0.98 },
+      { "name": "Tween-20", "fraction": 0.02 }
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lab Recipe Calculator - Calculate ingredient volumes for lab media formulations" />
+  <meta name="theme-color" content="#0071e3" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Lab Recipes" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%230071e3' width='180' height='180'/%3E%3Ctext x='50%' y='50%' font-size='90' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'%3ELR%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%230071e3' width='180' height='180' rx='40'/%3E%3Ctext x='50%' y='50%' font-size='90' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'%3ELR%3C/text%3E%3C/svg%3E" />
+  <title>Lab Medium Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-system-ui">
+  <div class="max-w-2xl mx-auto p-4">
+    <!-- Header -->
+    <div class="bg-white rounded-t-2xl shadow-sm p-6 mb-0">
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">Lab Recipes</h1>
+      <p class="text-sm text-gray-600">Calculate ingredient volumes for your lab formulations</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-white shadow-sm p-6 mb-4">
+      <!-- Recipe Selection -->
+      <div class="mb-4">
+        <label for="recipeSelect" class="block text-sm font-semibold text-gray-900 mb-2">
+          Select Recipe
+        </label>
+        <select id="recipeSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900">
+        </select>
+      </div>
+
+      <!-- Volume Input -->
+      <div class="mb-6">
+        <label for="totalVolume" class="block text-sm font-semibold text-gray-900 mb-2">
+          Total Volume (mL)
+        </label>
+        <input
+          id="totalVolume"
+          type="number"
+          min="0"
+          step="0.1"
+          value="50"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+
+      <!-- Components Table -->
+      <div class="overflow-x-auto">
+        <table id="componentsTable" class="w-full text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Component</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Fraction</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Volume (mL)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-8 text-gray-500 text-sm" style="display: none;">
+        No components. Select a recipe to begin.
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-white rounded-b-2xl shadow-sm p-6">
+      <p class="text-xs text-gray-600">
+        <strong>PWA Enabled:</strong> This app works offline. Pin to your home screen for quick access on mobile.
+      </p>
+      <p class="text-xs text-gray-500 mt-2">
+        Recipes are configured in <code class="bg-gray-100 px-1 rounded">recipes.json</code>. Edit directly to add or modify recipes.
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="recipeManager.js"></script>
+  <script src="uiManager.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
