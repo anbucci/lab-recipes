@@ -15,16 +15,24 @@ A lightweight PWA (Progressive Web App) for calculating ingredient volumes for l
 
 ### Development
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
+(or with `npm`: `npm install && npm run dev`)
+
 Opens dev server at `http://localhost:5173`
 
 ### Production Build
 ```bash
-npm run build
+pnpm build
 ```
-Generates optimized files in `dist/` folder
+Generates optimized single-file HTML in `dist/` folder
+
+### Deploy to iCloud
+```bash
+pnpm deploy:icloud
+```
+Builds and syncs the app to iCloud Drive (`~/Library/Mobile Documents/com~apple~CloudDocs/Lab/`)
 
 ### On Mobile (iPhone)
 1. Open app in Safari
