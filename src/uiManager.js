@@ -8,9 +8,11 @@ export default class UIManager {
 
     // DOM Elements
     this.recipeSelect = document.getElementById('recipeSelect')
+    this.categoryTabs = document.getElementById('categoryTabs')
     this.totalVolumeInput = document.getElementById('totalVolume')
     this.componentsTableBody = document.querySelector('#componentsTable tbody')
     this.emptyState = document.getElementById('emptyState')
+    this.selectedCategory = null
   }
 
   init() {
@@ -26,6 +28,7 @@ export default class UIManager {
 
   populateRecipeSelect() {
     this.recipeSelect.innerHTML = ''
+    this.categoryTabs.innerHTML = ''
     const categories = this.recipeManager.getCategories()
 
     console.log('Populating recipes. Categories found:', categories)
@@ -36,24 +39,56 @@ export default class UIManager {
       return
     }
 
-    categories.forEach((category) => {
-      const optgroup = document.createElement('optgroup')
-      optgroup.label = category
-
-      this.recipeManager.getRecipesByCategory(category).forEach((recipe) => {
-        const option = document.createElement('option')
-        option.value = recipe.id
-        option.textContent = recipe.name
-        optgroup.appendChild(option)
+    // Create tabs for categories
+    categories.forEach((category, idx) => {
+      const btn = document.createElement('button')
+      btn.type = 'button'
+      btn.textContent = category
+      btn.className = 'px-3 py-1 rounded-md text-sm border border-transparent bg-white text-gray-900 hover:bg-gray-100'
+      btn.addEventListener('click', () => {
+        this.selectCategory(category, btn)
       })
+      this.categoryTabs.appendChild(btn)
 
-      this.recipeSelect.appendChild(optgroup)
+      // default select first category
+      if (idx === 0 && !this.selectedCategory) {
+        this.selectedCategory = category
+      }
     })
 
-    // Set first recipe if available
-    if (this.recipeManager.getAllRecipes().length > 0) {
-      this.recipeSelect.value = this.recipeManager.getAllRecipes()[0].id
+    // Activate the selected category and populate recipes
+    this.selectCategory(this.selectedCategory)
+  }
+
+  selectCategory(category, clickedButton) {
+    if (!category) return
+    // update active tab styles
+    Array.from(this.categoryTabs.children).forEach((el) => {
+      if (el === clickedButton || (clickedButton == null && el.textContent === category)) {
+        el.className = 'px-3 py-1 rounded-md text-sm border bg-blue-500 text-white'
+      } else {
+        el.className = 'px-3 py-1 rounded-md text-sm border border-transparent bg-white text-gray-900 hover:bg-gray-100'
+      }
+    })
+
+    this.selectedCategory = category
+    this.recipeSelect.innerHTML = ''
+    const recipes = this.recipeManager.getRecipesByCategory(category)
+    if (recipes.length === 0) {
+      this.recipeSelect.innerHTML = '<option>No recipes available</option>'
+      return
     }
+    recipes.forEach((recipe) => {
+      const option = document.createElement('option')
+      option.value = recipe.id
+      option.textContent = recipe.name
+      this.recipeSelect.appendChild(option)
+    })
+
+    // Set first recipe for this category
+    this.recipeSelect.value = recipes[0].id
+    // Trigger table update for the newly selected recipe
+    this.updateTable()
   }
 
   onRecipeChange() {

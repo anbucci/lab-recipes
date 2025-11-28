@@ -5,34 +5,43 @@ A lightweight PWA (Progressive Web App) for calculating ingredient volumes for l
 ## Features
 
 - 📱 **PWA Support** - Install as standalone app, works offline
-- 🧪 **Recipe Management** - Define recipes in `recipes.json`
+- 🧪 **Recipe Management** - Define recipes in `data/recipes.json`
 - 🔢 **Volume Calculator** - Automatically calculates component volumes based on total volume
 - 📊 **Category Organization** - Recipes organized by categories
 - 🎨 **Tailwind CSS** - Clean, modern UI
-- ⚡ **Vite** - Fast build system with development server
+- ⚡ **Vite** - Fast build system with development server. Packs all into a single html file.
 
 ## Getting Started
 
 ### Development
+
+
+
 ```bash
-pnpm install
+pnpm install 
+```
+Install dependencies - **Only the first time the projet is set up**, or if the folder `node_modules` is deleted.
+
+
+```bash 
 pnpm dev
 ```
-(or with `npm`: `npm install && npm run dev`)
-
-Opens dev server at `http://localhost:5173`
-
-### Production Build
-```bash
-pnpm build
-```
-Generates optimized single-file HTML in `dist/` folder
+Run the dev server at `http://localhost:5173` with live browser refresh (UI updates automatically when a change is saved, no need to refreah the browser).
 
 ### Deploy to iCloud
+
 ```bash
 pnpm deploy:icloud
 ```
 Builds and syncs the app to iCloud Drive (`~/Library/Mobile Documents/com~apple~CloudDocs/Lab/`)
+
+### Build
+
+```bash
+pnpm build
+```
+Generates single-file HTML in `dist/` folder
+
 
 ### On Mobile (iPhone)
 1. Open app in Safari
@@ -72,13 +81,3 @@ Edit `recipes.json` to add recipes:
 ```
 
 Fractions are automatically normalized to sum to 1.0.
-
-## Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- iOS Safari 14+
-- Android Chrome
-
-## License
-
-MIT
