@@ -1,7 +1,7 @@
 [
   {
     "id": "neuronal_medium",
-    "name": "Neuronal Medium",
+    "name": "[TEST] Neuronal Medium",
     "category": "Growth Media",
     "components": [
       { "name": "Neurobasal", "fraction": 0.96 },
@@ -12,7 +12,7 @@
   },
   {
     "id": "astrocyte_medium",
-    "name": "Astrocyte Medium",
+    "name": "[TEST] Astrocyte Medium",
     "category": "Growth Media",
     "components": [
       { "name": "DMEM", "fraction": 0.88 },
@@ -22,7 +22,7 @@
   },
   {
     "id": "culture_buffer",
-    "name": "PBS Buffer",
+    "name": "[TEST] PBS Buffer",
     "category": "Buffers",
     "components": [
       { "name": "PBS", "fraction": 0.98 },
