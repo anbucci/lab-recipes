@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.24.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "deploy:gh-pages": "pnpm build",
     "preview": "vite preview"
