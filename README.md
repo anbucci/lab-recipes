@@ -28,13 +28,6 @@ pnpm dev
 ```
 Runs the dev server at `http://localhost:5173` with live browser refresh. UI updates automatically when a change is saved, no need to refreah the browser.
 
-### Deploy to iCloud
-
-```bash
-pnpm deploy:icloud
-```
-Builds and syncs the app to iCloud Drive (`~/Library/Mobile Documents/com~apple~CloudDocs/Lab/`)
-
 ### Build
 
 ```bash
@@ -61,6 +54,7 @@ git add -A && git commit -m "Update site" && git push
 ```
 
 The workflow will run and publish the `dist/` folder to the `gh-pages` branch.
+
 
 
 ## Project Structure
