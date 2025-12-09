@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lab Recipe Calculator - Calculate ingredient volumes for lab media formulations" />
+  <meta name="theme-color" content="#0071e3" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Lab Recipes" />
+  <link rel="manifest" href="./manifest-DN0tCygK.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%23%0071e3' width='180' height='180'/%3E%3Ctext x='50%25' y='50%25' font-size='90' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'%3ELR%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%23%0071e3' width='180' height='180' rx='40'/%3E%3Ctext x='50%25' y='50%25' font-size='90' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'%3ELR%3C/text%3E%3C/svg%3E" />
+  <title>Lab Medium Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" crossorigin>!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver(e=>{for(const n of e)if("childList"===n.type)for(const e of n.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&t(e)}).observe(document,{childList:!0,subtree:!0})}function t(e){if(e.ep)return;e.ep=!0;const t=function(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),"use-credentials"===e.crossOrigin?t.credentials="include":"anonymous"===e.crossOrigin?t.credentials="omit":t.credentials="same-origin",t}(e);fetch(e.href,t)}}();const e=[{id:"neuronal_medium",name:"Neuronal Medium",category:"Growth Media",components:[{name:"Neurobasal",fraction:.96},{name:"B27",fraction:.02},{name:"Pen/Strep",fraction:.01},{name:"GlutaMAX",fraction:.01}]},{id:"astrocyte_medium",name:"Astrocyte Medium",category:"Growth Media",components:[{name:"DMEM",fraction:.88},{name:"FBS",fraction:.1},{name:"Pen/Strep",fraction:.02}]},{id:"culture_buffer",name:"PBS Buffer",category:"Buffers",components:[{name:"PBS",fraction:.98},{name:"Tween-20",fraction:.02}]}];class t{constructor(){this.recipes=[]}async loadRecipes(){try{this.recipes=e,console.log("Recipes loaded successfully:",this.recipes.length,"recipes")}catch(t){console.error("Error loading recipes:",t),this.recipes=[]}}getRecipeById(e){return this.recipes.find(t=>t.id===e)}getRecipesByCategory(e){return this.recipes.filter(t=>t.category===e)}getCategories(){const e=new Set(this.recipes.map(e=>e.category));return Array.from(e).sort()}getAllRecipes(){return this.recipes}}class n{constructor(e){this.recipeManager=e,this.recipeSelect=document.getElementById("recipeSelect"),this.categoryTabs=document.getElementById("categoryTabs"),this.totalVolumeInput=document.getElementById("totalVolume"),this.componentsTableBody=document.querySelector("#componentsTable tbody"),this.emptyState=document.getElementById("emptyState"),this.selectedCategory=null}init(){this.setupEventListeners(),this.populateRecipeSelect(),this.updateTable()}setupEventListeners(){this.recipeSelect.addEventListener("change",()=>this.onRecipeChange()),this.totalVolumeInput.addEventListener("input",()=>this.updateTable())}populateRecipeSelect(){this.recipeSelect.innerHTML="",this.categoryTabs.innerHTML="";const e=this.recipeManager.getCategories();console.log("Populating recipes. Categories found:",e),console.log("Total recipes:",this.recipeManager.getAllRecipes().length),0!==e.length?(e.forEach((e,t)=>{const n=document.createElement("button");n.type="button",n.textContent=e,n.className="px-3 py-1 rounded-md text-sm border border-transparent bg-white text-gray-900 hover:bg-gray-100",n.addEventListener("click",()=>{this.selectCategory(e,n)}),this.categoryTabs.appendChild(n),0!==t||this.selectedCategory||(this.selectedCategory=e)}),this.selectCategory(this.selectedCategory)):this.recipeSelect.innerHTML="<option>No recipes available</option>"}selectCategory(e,t){if(!e)return;Array.from(this.categoryTabs.children).forEach(n=>{n===t||null==t&&n.textContent===e?n.className="px-3 py-1 rounded-md text-sm border bg-blue-500 text-white":n.className="px-3 py-1 rounded-md text-sm border border-transparent bg-white text-gray-900 hover:bg-gray-100"}),this.selectedCategory=e,this.recipeSelect.innerHTML="";const n=this.recipeManager.getRecipesByCategory(e);0!==n.length?(n.forEach(e=>{const t=document.createElement("option");t.value=e.id,t.textContent=e.name,this.recipeSelect.appendChild(t)}),this.recipeSelect.value=n[0].id,this.updateTable()):this.recipeSelect.innerHTML="<option>No recipes available</option>"}onRecipeChange(){this.updateTable()}updateTable(){const e=this.recipeSelect.value,t=this.recipeManager.getRecipeById(e),n=parseFloat(this.totalVolumeInput.value)||0;this.componentsTableBody.innerHTML="",!t||n<=0?this.emptyState.style.display="block":(this.emptyState.style.display="none",t.components.forEach(e=>{const t=document.createElement("tr");t.className="border-b border-gray-200 hover:bg-gray-50";const r=document.createElement("td");r.textContent=e.name,r.className="px-4 py-3 text-gray-900";const o=document.createElement("td");o.textContent=(100*e.fraction).toFixed(2)+" %",o.className="px-4 py-3 text-gray-600";const i=document.createElement("td"),a=e.fraction*n;i.textContent=a.toFixed(2),i.className="px-4 py-3 font-semibold text-gray-900",t.appendChild(r),t.appendChild(o),t.appendChild(i),this.componentsTableBody.appendChild(t)}))}}async function r(){const e=new t;await e.loadRecipes();new n(e).init()}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",r):r();</script>
+</head>
+<body class="bg-gray-100 font-system-ui">
+  <div class="max-w-2xl mx-auto p-4">
+    <!-- Header -->
+    <div class="bg-white rounded-t-2xl shadow-sm p-6 mb-0">
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">Lab Recipes</h1>
+      <p class="text-sm text-gray-600">Calculate ingredient volumes for your lab formulations</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-white shadow-sm p-6 mb-4">
+      <!-- Recipe Selection -->
+      <div class="mb-4">
+        <label class="block text-sm font-semibold text-gray-900 mb-2">
+          Select Recipe
+        </label>
+        <div id="categoryTabs" class="mb-3 flex space-x-2 overflow-auto"></div>
+        <select id="recipeSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900">
+        </select>
+      </div>
+
+      <!-- Volume Input -->
+      <div class="mb-6">
+        <label for="totalVolume" class="block text-sm font-semibold text-gray-900 mb-2">
+          Total Volume (mL)
+        </label>
+        <input
+          id="totalVolume"
+          type="number"
+          min="0"
+          step="0.1"
+          value="50"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+
+      <!-- Components Table -->
+      <div class="overflow-x-auto">
+        <table id="componentsTable" class="w-full text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Component</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Fraction</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-900">Volume (mL)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-8 text-gray-500 text-sm" style="display: none;">
+        No components. Select a recipe to begin.
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-white rounded-b-2xl shadow-sm p-6">
+      <p class="text-xs text-gray-500 mt-2">
+        Recipes are configured in <code class="bg-gray-100 px-1 rounded">data/recipes.json</code>. Edit directly to add or modify recipes.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
