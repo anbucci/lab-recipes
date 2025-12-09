@@ -28,5 +28,18 @@
       { "name": "PBS", "fraction": 0.98 },
       { "name": "Tween-20", "fraction": 0.02 }
     ]
+  },
+  {
+    "id": "ringers_medium",
+    "name": "Ringer's Medium",
+    "category": "Electrophysiology",
+    "components": [
+      { "name": "10x Ringer's salt base", "fraction": 0.10 },
+      { "name": "1 M HEPES (pH 7.4)", "fraction": 0.01 },
+      { "name": "1 M Glucose", "fraction": 0.01 },
+      { "name": "1 M CaCl2", "fraction": 0.002 },
+      { "name": "1 M MgCl2", "fraction": 0.001 },
+      { "name": "Sterile water", "fraction": 0.877 }
+    ]
   }
 ]
