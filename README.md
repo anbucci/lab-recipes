@@ -35,25 +35,9 @@ pnpm build
 ```
 Generates single-file HTML in `dist/` folder
 
-### Deploy to GitHub Pages (via GitHub Actions)
+### Deploy to GitHub Pages
 
-This project includes a GitHub Actions workflow that builds the app and publishes the `dist/` folder to the `gh-pages` branch. The workflow triggers automatically on push to `main` and can also be run manually from the Actions tab.
-
-Steps to enable GitHub Pages for this repo:
-
-1. Push this repository to GitHub (if not already pushed).
-2. In the repository Settings → Pages, set the source to the `gh-pages` branch (the workflow will create/update this branch).
-3. (Optional) Under Pages, set a custom domain or leave the default `https://<your-org-or-username>.github.io/<repo>/`.
-
-To trigger a deployment manually from your machine:
-
-```bash
-pnpm build
-# then push changes to trigger the workflow
-git add -A && git commit -m "Update site" && git push
-```
-
-The workflow will run and publish the `dist/` folder to the `gh-pages` branch.
+The repository includes a GitHub Actions workflow that builds and publishes `dist/` to GitHub Pages on push to `main` (or via manual dispatch). Push to `main` or trigger the workflow in Actions to deploy. The site will be available at `https://<your-username>.github.io/<repo>/` once the deployment completes.
 
 
 
