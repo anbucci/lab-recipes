@@ -41,3 +41,19 @@ jobs:
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Show deployment URL
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            URL="https://${OWNER}.github.io/"
+          else
+            URL="https://${OWNER}.github.io/${REPO}/"
+          fi
+          echo "Deployed to: $URL"
+          if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+            echo "### Deployment" >> $GITHUB_STEP_SUMMARY
+            echo "Deployed to: $URL" >> $GITHUB_STEP_SUMMARY
+          fi
