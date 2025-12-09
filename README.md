@@ -4,29 +4,29 @@ A lightweight PWA (Progressive Web App) for calculating ingredient volumes for l
 
 ## Features
 
-- 📱 **PWA Support** - Install as standalone app, works offline
 - 🧪 **Recipe Management** - Define recipes in `data/recipes.json`
 - 🔢 **Volume Calculator** - Automatically calculates component volumes based on total volume
 - 📊 **Category Organization** - Recipes organized by categories
+- 📱 **PWA Support** - Install as standalone app, works offline
 - 🎨 **Tailwind CSS** - Clean, modern UI
 - ⚡ **Vite** - Fast build system with development server. Packs all into a single html file.
 
 ## Getting Started
 
-### Development
-
-
+### Install dependencies
 
 ```bash
 pnpm install 
 ```
-Install dependencies - **Only the first time the projet is set up**, or if the folder `node_modules` is deleted.
 
+Installs dependencies - **Only needed the first time the projet is set up**, or if the folder `node_modules` is deleted.
+
+### Development
 
 ```bash 
 pnpm dev
 ```
-Run the dev server at `http://localhost:5173` with live browser refresh (UI updates automatically when a change is saved, no need to refreah the browser).
+Runs the dev server at `http://localhost:5173` with live browser refresh. UI updates automatically when a change is saved, no need to refreah the browser.
 
 ### Deploy to iCloud
 
@@ -42,11 +42,26 @@ pnpm build
 ```
 Generates single-file HTML in `dist/` folder
 
+### Deploy to GitHub Pages (via GitHub Actions)
 
-### On Mobile (iPhone)
-1. Open app in Safari
-2. Tap Share → Add to Home Screen
-3. Opens as standalone PWA
+This project includes a GitHub Actions workflow that builds the app and publishes the `dist/` folder to the `gh-pages` branch. The workflow triggers automatically on push to `main` and can also be run manually from the Actions tab.
+
+Steps to enable GitHub Pages for this repo:
+
+1. Push this repository to GitHub (if not already pushed).
+2. In the repository Settings → Pages, set the source to the `gh-pages` branch (the workflow will create/update this branch).
+3. (Optional) Under Pages, set a custom domain or leave the default `https://<your-org-or-username>.github.io/<repo>/`.
+
+To trigger a deployment manually from your machine:
+
+```bash
+pnpm build
+# then push changes to trigger the workflow
+git add -A && git commit -m "Update site" && git push
+```
+
+The workflow will run and publish the `dist/` folder to the `gh-pages` branch.
+
 
 ## Project Structure
 

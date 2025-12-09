@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy:gh-pages": "pnpm build",
     "preview": "vite preview",
     "deploy:icloud": "pnpm build && rsync -a --delete dist/ \"/Users/anbucci/Library/Mobile Documents/com~apple~CloudDocs/Lab/\""
   },
