@@ -1,0 +1,6 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+# Project-scoped Codex configuration for this repository.
+# Keep this file limited to repo-specific settings rather than personal preferences.
+
+project_root_markers = [".git", "package.json", "pnpm-lock.yaml"]
