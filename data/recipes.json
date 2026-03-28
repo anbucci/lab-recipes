@@ -41,5 +41,25 @@
       { "name": "1 M MgCl2", "fraction": 0.001 },
       { "name": "Sterile water", "fraction": 0.877 }
     ]
+  },
+  {
+    "id": "primary_antibody_solution_3_nds",
+    "name": "3% NDS",
+    "category": "Stainings",
+    "components": [
+      { "name": "PBS", "fraction": 0.967 },
+      { "name": "Normal Donkey Serum (NDS)", "fraction": 0.03 },
+      { "name": "Triton X-100", "fraction": 0.003 }
+    ]
+  },
+  {
+    "id": "blocking_solution_10_nds",
+    "name": "10% NDS",
+    "category": "Stainings",
+    "components": [
+      { "name": "PBS", "fraction": 0.897 },
+      { "name": "Normal Donkey Serum (NDS)", "fraction": 0.10 },
+      { "name": "Triton X-100", "fraction": 0.003 }
+    ]
   }
 ]
