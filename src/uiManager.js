@@ -272,6 +272,39 @@ export default class UIManager {
     this.updateTable()
   }
 
+  getComponentTarget(comp) {
+    if (typeof comp.fraction === 'number') {
+      return (comp.fraction * 100).toFixed(2) + ' %'
+    }
+
+    if (typeof comp.amountPerLiter === 'number' && comp.unit) {
+      return comp.amountPerLiter.toFixed(2) + ' ' + comp.unit + '/L'
+    }
+
+    return 'Manual'
+  }
+
+  getComponentAmount(comp, totalVol) {
+    if (typeof comp.fraction === 'number') {
+      return this.formatVolume(comp.fraction * totalVol)
+    }
+
+    if (typeof comp.amountPerLiter === 'number' && comp.unit) {
+      const scaledAmount = comp.amountPerLiter * (totalVol / 1000)
+      return scaledAmount.toFixed(2) + ' ' + comp.unit
+    }
+
+    return '-'
+  }
+
+  formatVolume(volumeMl) {
+    if (volumeMl < 1) {
+      return (volumeMl * 1000).toFixed(0) + ' uL'
+    }
+
+    return volumeMl.toFixed(2) + ' mL'
+  }
+
   updateTable() {
     const recipeId = this.recipeSelect.value
     const recipe = this.recipeManager.getRecipeById(recipeId)
@@ -295,12 +328,11 @@ export default class UIManager {
       nameCell.className = 'px-4 py-3 text-gray-900'
 
       const fracCell = document.createElement('td')
-      fracCell.textContent = (comp.fraction * 100).toFixed(2) + ' %'
+      fracCell.textContent = this.getComponentTarget(comp)
       fracCell.className = 'px-4 py-3 text-gray-600'
 
       const volCell = document.createElement('td')
-      const vol = comp.fraction * totalVol
-      volCell.textContent = vol.toFixed(2)
+      volCell.textContent = this.getComponentAmount(comp, totalVol)
       volCell.className = 'px-4 py-3 font-semibold text-gray-900'
 
       row.appendChild(nameCell)

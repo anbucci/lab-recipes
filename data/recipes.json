@@ -31,15 +31,16 @@
   },
   {
     "id": "ringers_medium",
-    "name": "Ringer's Medium",
+    "name": "1X Mouse Ringer",
     "category": "Electrophysiology",
     "components": [
-      { "name": "10x Ringer's salt base", "fraction": 0.10 },
-      { "name": "1 M HEPES (pH 7.4)", "fraction": 0.01 },
-      { "name": "1 M Glucose", "fraction": 0.01 },
-      { "name": "1 M CaCl2", "fraction": 0.002 },
-      { "name": "1 M MgCl2", "fraction": 0.001 },
-      { "name": "Sterile water", "fraction": 0.877 }
+      { "name": "NaCl (1 M stock)", "fraction": 0.11 },
+      { "name": "KCl (3 M stock)", "fraction": 0.00083 },
+      { "name": "CaCl2 2H2O (1 M stock)", "fraction": 0.001 },
+      { "name": "MgCl2 6H2O (1 M stock)", "fraction": 0.0016 },
+      { "name": "D(+)Glucose", "amountPerLiter": 1.8, "unit": "g" },
+      { "name": "dH2O", "fraction": 0.88657 },
+      { "name": "NaHCO3 (add after filtration)", "amountPerLiter": 1.84, "unit": "g" }
     ]
   },
   {
@@ -47,9 +48,12 @@
     "name": "3% NDS",
     "category": "Stainings",
     "components": [
-      { "name": "PBS", "fraction": 0.967 },
-      { "name": "Normal Donkey Serum (NDS)", "fraction": 0.03 },
-      { "name": "Triton X-100", "fraction": 0.003 }
+      { "name": "BSA", "amountPerLiter": 10, "unit": "g" },
+      { "name": "Triton X-100 (10% stock)", "fraction": 0.05 },
+      { "name": "Donkey Serum", "fraction": 0.03 },
+      { "name": "PBS (10x stock)", "fraction": 0.10 },
+      { "name": "NaAz (1:200 stock, add at end)", "fraction": 0.005 },
+      { "name": "Water", "fraction": 0.815 }
     ]
   },
   {
@@ -57,9 +61,12 @@
     "name": "10% NDS",
     "category": "Stainings",
     "components": [
-      { "name": "PBS", "fraction": 0.897 },
-      { "name": "Normal Donkey Serum (NDS)", "fraction": 0.10 },
-      { "name": "Triton X-100", "fraction": 0.003 }
+      { "name": "BSA", "amountPerLiter": 10, "unit": "g" },
+      { "name": "Triton X-100 (10% stock)", "fraction": 0.05 },
+      { "name": "Donkey Serum", "fraction": 0.10 },
+      { "name": "PBS (10x stock)", "fraction": 0.10 },
+      { "name": "NaAz (1:200 stock, add at end)", "fraction": 0.005 },
+      { "name": "Water", "fraction": 0.745 }
     ]
   }
 ]

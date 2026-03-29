@@ -5,7 +5,7 @@ A lightweight PWA (Progressive Web App) for calculating ingredient volumes for l
 ## Features
 
 - 🧪 **Recipe Management** - Define recipes in `data/recipes.json`
-- 🔢 **Volume Calculator** - Automatically calculates component volumes based on total volume
+- 🔢 **Recipe Calculator** - Automatically calculates stock volumes and fixed-per-liter additives based on total volume
 - 📊 **Category Organization** - Recipes organized by categories
 - 📱 **PWA Support** - Install as standalone app, works offline
 - 🎨 **Tailwind CSS** - Clean, modern UI
@@ -68,9 +68,9 @@ Edit `recipes.json` to add recipes:
   "category": "Category Name",
   "components": [
     { "name": "Component A", "fraction": 0.5 },
-    { "name": "Component B", "fraction": 0.5 }
+    { "name": "Component B", "amountPerLiter": 1.8, "unit": "g" }
   ]
 }
 ```
 
-Fractions are automatically normalized to sum to 1.0.
+Use `fraction` for liquid components that scale as a share of the final volume. Use `amountPerLiter` plus `unit` for fixed additives such as powders that should scale per liter of final solution.
